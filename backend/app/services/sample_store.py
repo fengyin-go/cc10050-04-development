@@ -124,3 +124,28 @@ class SampleStoreService(BaseModuleService):
             "total": len(rows),
             "parsed": parsed,
         }
+
+    def correct_content(self, entry_id: int, content: str, reason: str = "") -> dict[str, Any]:
+        """采集层更正样本原始内容：内容版本 +1。
+
+        只更新原始HTML摘要与内容版本；线上解析状态（status）与线上解析价格
+        属于生产解析记录，不随更正或任何试跑改动。
+        """
+        entry = store.find(self.MODULE, entry_id)
+        if entry is None:
+            return {"ok": False, "message": f"{self.ENTITY} {entry_id} 不存在"}
+        content = (content or "").strip()
+        if not content:
+            return {"ok": False, "message": "更正后的采集内容不能为空"}
+        if content == str(entry.get("原始HTML摘要", "")).strip():
+            return {"ok": False, "message": "更正内容与现有原文一致，无需更正"}
+        entry["原始HTML摘要"] = content
+        entry["内容版本"] = int(entry.get("内容版本", 1) or 1) + 1
+        entry["更正时间"] = datetime.now(timezone.utc).isoformat()
+        if reason:
+            entry["更正原因"] = reason
+        return {
+            "ok": True,
+            "message": f"样本内容已更正（rev{entry['内容版本']}），线上解析状态与价格保持不变",
+            "sample": entry,
+        }

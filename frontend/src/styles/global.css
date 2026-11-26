@@ -70,3 +70,26 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .analysis-chart { display: flex; align-items: flex-end; gap: 8px; height: 160px; padding: 12px 0; }
 .analysis-bar { flex: 1; border-radius: 4px 4px 0 0; background: var(--brand); min-width: 24px; position: relative; transition: height 0.4s; }
 .analysis-bar span { position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); font-size: 10px; color: var(--muted); white-space: nowrap; }
+/* 模板试跑对照（复核视图）与复测差异视图 */
+.trial-panel { margin-top: 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
+.trial-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.trial-head h3 { margin: 0; font-size: 15px; }
+.trial-desc { color: var(--muted); font-size: 12px; margin: 4px 0 0; }
+.trial-form { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; margin-bottom: 12px; padding: 10px; background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; }
+.trial-form label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
+.trial-form select { padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; min-width: 180px; }
+.trial-sheet { width: min(760px, 100%); }
+.trial-source { font-size: 12px; color: var(--muted); margin: 6px 0; }
+.trial-stale { font-size: 12px; color: #b45309; background: #fffbeb; border: 1px solid #fcd34d; border-radius: 6px; padding: 6px 8px; }
+.trial-raw { background: #0f172a; color: #e2e8f0; border-radius: 6px; padding: 8px 10px; font-size: 12px; max-height: 120px; overflow: auto; white-space: pre-wrap; word-break: break-all; }
+.field-missing strong { color: #b42318; }
+.field-source { display: block; color: var(--muted); font-size: 11px; }
+.trial-missing { font-size: 12px; color: var(--muted); }
+.trial-status-line { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); font-size: 12px; background: #f8fafc; }
+.badge.ok { color: #15803d; border-color: #86efac; background: #f0fdf4; }
+.badge.warn { color: #b45309; border-color: #fcd34d; background: #fffbeb; }
+.badge.muted { color: var(--muted); }
+.trial-ok { color: #15803d; font-size: 13px; }
+.trial-correct { margin-top: 10px; border-top: 1px dashed var(--border); padding-top: 10px; }
+.trial-correct textarea { width: 100%; box-sizing: border-box; border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-family: monospace; font-size: 12px; }

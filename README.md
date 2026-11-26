@@ -78,6 +78,10 @@ npm run dev
   `frontend/src/domain/<模块>.ts`，用于承载真实业务差异并维持36题位容量。
 - 列表接口统一返回 `{ items, total, page, size }`，动作接口统一返回 `{ ok, message }`。
 - 状态流转只允许在 `app/services` 里改，路由层不做业务判断。
+- 页面解析模板附带复核视图：选样本与两个模板版本在同一份原文上试跑生成字段对照单，
+  已审阅对照单可安排解析质量审计复测；试跑与复测只写对照（parser_trial）与审计
+  （parse_audit）数据，不回写样本库的线上解析状态与价格。接口挂在
+  `/api/parser-review/...`，前端为 `ParserTrialPanel.vue` 与 `AuditRetestPanel.vue`。
 
 领域：数据工程
 子方向：数据采集、爬虫与RPA
